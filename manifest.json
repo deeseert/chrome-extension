@@ -1,5 +1,5 @@
 {
-  "name": "Chrome Extension for 'Coders in the Hoods'",
+  "name": "Chrome Extension for 'Coders In Hoods'",
   "version": "1.0.1",
   "description": "This extension will copy and save 'URL' and 'Title' of a web page opened in a new tab",
   "manifest_version": 2,
