@@ -11,9 +11,13 @@ console.log("background.js running");
 //   chrome.tabs.sendMessage(tab.id, msg)
 // }
 
-chrome.runtime.onMessage.addListener(function(response, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   // How do I pass this response back to content.js???????????
-  console.log(response);
+  let params = { active: true, currentWindow: true };
+  chrome.tabs.query(params, gotTabs);
+  function gotTabs(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, message);
+  }
 });
 
 // Pass now the title and the url to the popup extension window

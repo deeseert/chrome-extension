@@ -1,6 +1,8 @@
+const myTitle = document.querySelector("#myTitle");
+const myURL = document.querySelector("#myURL");
 //For copying and paste
 function getTitle() {
-  let title = document.querySelector("h1").innerText;
+  let title = document.getElementsByTagName("title")[0].innerText;
   console.log("Title:", title);
   return title;
 }
@@ -12,12 +14,9 @@ function getUrl() {
 }
 
 function gotMessage() {
-  console.log("heydfgdfsg");
-  // if (message.txt) {
   const title = getTitle();
   const url = getUrl();
   return { title, url };
-  // }
 }
 const details = gotMessage();
 
@@ -38,3 +37,9 @@ const details = gotMessage();
 // chrome.runtime.sendMessage(window.location.href);
 
 chrome.runtime.sendMessage(details);
+
+// This code needs to run onClicked event!!
+chrome.runtime.onMessage.addListener(function(response, sender, sendResponse) {
+  myTitle.innerHTML = `TITLE: ${response.title}`;
+  myURL.innerHTML = `URL: ${response.url}`;
+});
